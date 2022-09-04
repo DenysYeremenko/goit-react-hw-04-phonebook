@@ -6,7 +6,6 @@ import { useState } from 'react';
 export const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const [id, setId] = useState('');
   const nameInputId = nanoid();
   const numberInputId = nanoid();
 
@@ -14,16 +13,11 @@ export const ContactForm = ({ onSubmit }) => {
     e.target.name === 'name'
       ? setName(e.target.value)
       : setNumber(e.target.value);
-    setId(nanoid());
-    // this.setState({
-    //   [e.target.name]: e.target.value,
-    //   id: nanoid(),
-    // });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit({ name, number, id });
+    onSubmit({ name, number, id: nanoid() });
     resetForm();
   };
 
